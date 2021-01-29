@@ -82,7 +82,7 @@ let collegeList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 const aboutDiv = document.getElementById("about__wrapper");
 const mainDiv = document.getElementById("main__wrapper");
-const aboutNav = menuLinks[13]
+const aboutNav = menuLinks[14]
 const mainNav = [...menuLinks].slice(0, 12);
 
 // scroll not enabled when about-content displayed
