@@ -1,5 +1,13 @@
 import footnoteText from './footnote-text.js';
 
+// for Handlebars template that populates Endnotes
+const endnoteTemplate = document.getElementById("endnoteTemplate");
+const endTemplateSource = endnoteTemplate.innerHTML;
+const endnotesHTemplate = Handlebars.compile(endTemplateSource);
+const compiledEndHtml = endnotesHTemplate(footnoteText);
+document.querySelector(".endnotes__ul").innerHTML = compiledEndHtml;
+
+
 // func collapses expanded nav when menu item clicked
 const collapseNav = (e) => {
     let expandedNav = document.querySelector('#navbar__toggle')
@@ -21,28 +29,12 @@ const renderPopovers = () => {
     // insert popover code inside span; "focus" trigger dismisses on next click
     document.querySelectorAll('.note-main').forEach(item => {
         let footnoteNum = item.id.slice(2)
-        //grab item
-        //slice off fn to grab #
-        //insert Content based on #
-
+        // grab item, slice off fn to grab #, insert Content based on #
         item.innerHTML += `<a tabindex="0" role="button" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-html="true" data-bs-content="${footnoteText[footnoteNum]}">${footnoteNum}</a> `
     })
 }
 
-const renderEndnotes = () => {
-    // append endNote li elements to bibliography container
-    let endNotesContainer = document.querySelector(".endnotes__ul");
-
-    for (let key in footnoteText) {
-        let endNote = `<li class="text-break"><a href="#fn${key}"><span class="note-end" id="fn${key}b">${key} </span></a>${footnoteText[key]}</li>`;
-
-        endNotesContainer.insertAdjacentHTML('beforeEnd', endNote);
-    }
-}
-
 renderPopovers();
-renderEndnotes();
-
 
 // Enable popovers everywhere
 var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))

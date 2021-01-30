@@ -13,8 +13,21 @@
         <link href="https://fonts.googleapis.com/css2?family=Alatsi&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="custom.css">
         <link rel="preload" href="footnote-text.js" as="script" crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js"></script>
     </head>
-
+    <script id="endnoteTemplate" type="text/x-handlebars-template">
+        {{#each this}}
+            <li class="text-break">
+                <a href="#fn{{@key}}">
+                    <span class="note-end" id="fn{{@key}}b">
+                        {{@key}}
+                    </span>
+                </a>
+                {{{this}}}
+            </li>
+        {{/each}}       
+    </script>
+    
     <body id="top">
         <nav class="navbar navbar-expand-xl navbar-dark fixed-top" aria-label="Main navigation">
             <div class="container navbar__container">
